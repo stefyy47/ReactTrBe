@@ -4,7 +4,7 @@ app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
 
-app.get("/buildings", async (req, res) => {
+app.get("/buildings", (req, res) => {
   const { MongoClient } = require("mongodb");
   const client = new MongoClient(
     "mongodb+srv://stefyy47:v4z482iD18HCU2eS@cluster0.gmn33w6.mongodb.net/?retryWrites=true&w=majority"
@@ -12,7 +12,7 @@ app.get("/buildings", async (req, res) => {
   const database = client.db("Travian");
   const informations = database.collection("BuildingsInfo");
   const app = express();
-  const sal = await informations.findOne({ title: "sal" });
+  const sal = informations.findOne({ title: "sal" });
   console.log(sal);
   res.send(sal);
 });
