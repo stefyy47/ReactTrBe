@@ -21,7 +21,7 @@ export default async function handler(request, response) {
       worldName,
       playerId,
       villages: {
-        [villageId]: { tribe, troops, coordinates: { x_coord, y_coord } },
+        [villageId]: { tribe, troops: parseInt(troops), coordinates: { x_coord, y_coord } },
       },
     });
   } else {
@@ -31,7 +31,7 @@ export default async function handler(request, response) {
         $set: {
           villages: {
             ...result?.villages,
-            [villageId]: { tribe, troops, coordinates: { x_coord, y_coord } },
+            [villageId]: { tribe, troops: parseInt(troops), coordinates: { x_coord, y_coord } },
           },
         },
       }
